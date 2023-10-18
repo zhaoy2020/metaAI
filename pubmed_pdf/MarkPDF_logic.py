@@ -75,7 +75,13 @@ class QMarkPDF(QtWidgets.QMainWindow):
         print('='*100)
         print("标记关键词为：", query_list)
         print('+'*100)
-        self.walk(input_dir=self.ui.lineEdit_2.text(), query_list=query_list, output_dir=self.ui.lineEdit_3.text())
+        try:
+            self.walk(input_dir=self.ui.lineEdit_2.text(), query_list=query_list, output_dir=self.ui.lineEdit_3.text())
+        except:
+            if self.ui.lineEdit_2.text() == self.ui.lineEdit_3.text():
+                QtWidgets.QMessageBox.warning(self,"错误","输入和输出文件夹不能相同！")
+            else:
+                QtWidgets.QMessageBox.warning(self,"错误", "标记失败！")
         print('='*100)
         print('标记文件保存至MatchPDF文件夹中')
 
@@ -83,8 +89,8 @@ class QMarkPDF(QtWidgets.QMainWindow):
     def on_pushButton_2_clicked(self):
         try:
             self.inputDir = QtWidgets.QFileDialog.getExistingDirectory(self, "选择输入路径")
-            print(f"输出文件位置{self.inputDir}")
-            self.ui.lineEdit_2.setText(self.outputDir)
+            print(f"输入文件位置{self.inputDir}")
+            self.ui.lineEdit_2.setText(self.inputDir)
         except:
             QtWidgets.QMessageBox.warning(self, "错误", "输入路径出错！")
 
