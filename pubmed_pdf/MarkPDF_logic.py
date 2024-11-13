@@ -126,6 +126,8 @@ if __name__ == "__main__":
 
     sys.exit(app.exec_())  # 执行应用循环，固定步骤
 
+# D:\ProgramFiles\miniconda3\envs\pdf\Scripts\pyinstaller.exe -F MarkPDF_logic.py
+
 # import fitz  # PyMuPDF
 # import os
 
